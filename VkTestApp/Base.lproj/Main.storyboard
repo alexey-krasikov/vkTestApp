@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2SH-2r-WMs">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Симулятор-->
+        <scene sceneID="iDQ-nH-nM3">
+            <objects>
+                <tableViewController id="hHR-sc-9VI" customClass="ParametersTableViewController" customModule="VkTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Hvx-NJ-yXN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <sections>
+                            <tableViewSection headerTitle="Количество людей в моделируемой группе" id="WE0-P2-QrH">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="yBO-ef-xqR">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yBO-ef-xqR" id="gY3-eg-0Zj">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group Size" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0M-JJ-YVN">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="m0M-JJ-YVN" secondAttribute="bottom" id="W4N-y0-BIZ"/>
+                                                <constraint firstItem="m0M-JJ-YVN" firstAttribute="top" secondItem="gY3-eg-0Zj" secondAttribute="top" id="p4H-TI-cjH"/>
+                                                <constraint firstAttribute="trailing" secondItem="m0M-JJ-YVN" secondAttribute="trailing" constant="20" id="q6x-KR-2oX"/>
+                                                <constraint firstItem="m0M-JJ-YVN" firstAttribute="leading" secondItem="gY3-eg-0Zj" secondAttribute="leading" constant="20" id="yNZ-JF-TEI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Количество людей, которое может быть заражено одним человеком при контакте" id="72J-hs-bMY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MpH-fZ-J3B">
+                                        <rect key="frame" x="20" y="173" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MpH-fZ-J3B" id="wgt-tH-XdU">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Infection Factor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gmm-hg-YSU">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gmm-hg-YSU" firstAttribute="top" secondItem="wgt-tH-XdU" secondAttribute="top" id="PBK-Je-rgK"/>
+                                                <constraint firstItem="Gmm-hg-YSU" firstAttribute="leading" secondItem="wgt-tH-XdU" secondAttribute="leading" constant="20" id="eaD-XO-nqI"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gmm-hg-YSU" secondAttribute="trailing" constant="20" id="oJN-XB-D28"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gmm-hg-YSU" secondAttribute="bottom" id="pVS-zn-oCd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Период пересчёта количества заражённых людей" id="Uha-ZA-eL8">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JHD-nc-Btw">
+                                        <rect key="frame" x="20" y="290.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JHD-nc-Btw" id="Ywo-SS-E7C">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="T" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpa-Nd-dS4">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rpa-Nd-dS4" firstAttribute="top" secondItem="Ywo-SS-E7C" secondAttribute="top" id="74X-V1-8Zh"/>
+                                                <constraint firstAttribute="bottom" secondItem="rpa-Nd-dS4" secondAttribute="bottom" id="EaP-yB-pqP"/>
+                                                <constraint firstItem="rpa-Nd-dS4" firstAttribute="leading" secondItem="Ywo-SS-E7C" secondAttribute="leading" constant="20" id="ZWF-eq-WSu"/>
+                                                <constraint firstAttribute="trailing" secondItem="rpa-Nd-dS4" secondAttribute="trailing" constant="20" id="ag0-8c-oz6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="D0A-C9-t6p">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="631-ju-M8L">
+                                        <rect key="frame" x="20" y="370" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="631-ju-M8L" id="ML6-rV-6pb">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GM7-7U-FCU">
+                                                    <rect key="frame" x="93.5" y="5" width="187" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Запустить симуляцию"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GM7-7U-FCU" firstAttribute="centerY" secondItem="ML6-rV-6pb" secondAttribute="centerY" id="KVY-xr-E11"/>
+                                                <constraint firstItem="GM7-7U-FCU" firstAttribute="centerX" secondItem="ML6-rV-6pb" secondAttribute="centerX" id="aQN-Yp-MGj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="hHR-sc-9VI" id="PsP-Uz-e2L"/>
+                            <outlet property="delegate" destination="hHR-sc-9VI" id="yXp-lb-REy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Симулятор" id="MAy-IR-GwW"/>
+                    <connections>
+                        <outlet property="groupSizeTextField" destination="m0M-JJ-YVN" id="4Th-5R-qY6"/>
+                        <outlet property="infectionFactorTextField" destination="Gmm-hg-YSU" id="UP0-YA-mV0"/>
+                        <outlet property="recalculationPeriodTextField" destination="rpa-Nd-dS4" id="b4q-fN-00V"/>
+                        <outlet property="startSimulationButton" destination="GM7-7U-FCU" id="LDN-d2-U7Y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xj2-Ts-HCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="83"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b1A-Xn-OrH">
+            <objects>
+                <navigationController id="2SH-2r-WMs" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="MH2-8l-C8N">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hHR-sc-9VI" kind="relationship" relationship="rootViewController" id="CHq-b3-2YO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rva-a9-KTN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-552" y="83"/>
+        </scene>
+    </scenes>
+</document>
