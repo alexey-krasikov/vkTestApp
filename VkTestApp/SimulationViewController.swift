@@ -38,9 +38,11 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UIView.animate(withDuration: 0.6){
+        UIView.animate(withDuration: 1.0, delay: 0.0,
+           usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7,
+           options: [], animations: {
             self.updateZoomFoor(size: self.view.bounds.size)
-        }
+        }, completion: nil)
         
     }
     
