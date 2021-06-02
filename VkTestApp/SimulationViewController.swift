@@ -19,9 +19,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         scrollView.delegate = self
-        
         createHumans()
         drawHumans()
         
@@ -40,7 +38,10 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateZoomFoor(size: view.bounds.size)
+        UIView.animate(withDuration: 0.6){
+            self.updateZoomFoor(size: self.view.bounds.size)
+        }
+        
     }
     
     init?(coder: NSCoder, groupSize: Int, infectionFactor: Int, recalculationPeriod: Int)
@@ -63,7 +64,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     
     func drawHumans() {
         humans.forEach { (human) in
-            let smallFrame = CGRect(x: human.x, y: human.y, width: 30, height: 30)
+            let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
             square.backgroundColor = .green
             

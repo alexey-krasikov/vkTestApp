@@ -147,19 +147,19 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-JA-R0U">
-                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1600" height="2800"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="1000" id="DhT-JR-exz"/>
-                                            <constraint firstAttribute="height" constant="1600" id="hwo-lv-hVg"/>
+                                            <constraint firstAttribute="height" constant="2800" id="3px-KQ-1Jb"/>
+                                            <constraint firstAttribute="width" constant="1600" id="6Ha-BY-d40"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="bottom" secondItem="hbn-1N-BBK" secondAttribute="bottom" constant="722" id="Kmf-i8-dxz"/>
-                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="top" secondItem="hbn-1N-BBK" secondAttribute="top" id="Y2k-C5-wBa"/>
-                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="trailing" secondItem="hbn-1N-BBK" secondAttribute="trailing" constant="414" id="bng-At-kKM"/>
-                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="leading" secondItem="hbn-1N-BBK" secondAttribute="leading" id="vn4-GX-E68"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="leading" secondItem="hbn-1N-BBK" secondAttribute="leading" id="CYY-7l-1F1"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="trailing" secondItem="hbn-1N-BBK" secondAttribute="trailing" constant="414" id="H0s-55-gJj"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="top" secondItem="hbn-1N-BBK" secondAttribute="top" id="VuG-RJ-Z60"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="bottom" secondItem="hbn-1N-BBK" secondAttribute="bottom" constant="722" id="oG5-pn-VGL"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="hbn-1N-BBK"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HP7-lb-HCf"/>
