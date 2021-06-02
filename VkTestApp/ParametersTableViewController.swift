@@ -14,6 +14,8 @@ class ParametersTableViewController: UITableViewController {
     @IBOutlet var recalculationPeriodTextField: UITextField!
     @IBOutlet var startSimulationButton: UIButton!
     
+    var humans: [Human] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
