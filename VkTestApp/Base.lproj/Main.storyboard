@@ -3,10 +3,12 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Симулятор-->
+        <!--Параметры-->
         <scene sceneID="iDQ-nH-nM3">
             <objects>
                 <tableViewController id="hHR-sc-9VI" customClass="ParametersTableViewController" customModule="VkTestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,6 +104,9 @@
                                                     <rect key="frame" x="93.5" y="5" width="187" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Запустить симуляцию"/>
+                                                    <connections>
+                                                        <segue destination="4l1-rX-l7c" kind="show" destinationCreationSelector="simulationSegueAction:sender:" id="iJX-wk-8c8"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -118,7 +123,7 @@
                             <outlet property="delegate" destination="hHR-sc-9VI" id="yXp-lb-REy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Симулятор" id="MAy-IR-GwW"/>
+                    <navigationItem key="navigationItem" title="Параметры" id="MAy-IR-GwW"/>
                     <connections>
                         <outlet property="groupSizeTextField" destination="m0M-JJ-YVN" id="4Th-5R-qY6"/>
                         <outlet property="infectionFactorTextField" destination="Gmm-hg-YSU" id="UP0-YA-mV0"/>
@@ -129,6 +134,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xj2-Ts-HCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340" y="83"/>
+        </scene>
+        <!--Simulation View Controller-->
+        <scene sceneID="8pR-vB-1E6">
+            <objects>
+                <viewController id="4l1-rX-l7c" customClass="SimulationViewController" customModule="VkTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iXG-hs-Q5l" customClass="SimulationView" customModule="VkTestApp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh7-dZ-WXF">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-JA-R0U">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1600"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1000" id="DhT-JR-exz"/>
+                                            <constraint firstAttribute="height" constant="1600" id="hwo-lv-hVg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="bottom" secondItem="hbn-1N-BBK" secondAttribute="bottom" constant="722" id="Kmf-i8-dxz"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="top" secondItem="hbn-1N-BBK" secondAttribute="top" id="Y2k-C5-wBa"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="trailing" secondItem="hbn-1N-BBK" secondAttribute="trailing" constant="414" id="bng-At-kKM"/>
+                                    <constraint firstItem="FXj-JA-R0U" firstAttribute="leading" secondItem="hbn-1N-BBK" secondAttribute="leading" id="vn4-GX-E68"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="hbn-1N-BBK"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="HP7-lb-HCf"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="contentSize" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GCl-7q-WX2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="top" secondItem="GCl-7q-WX2" secondAttribute="top" id="MHQ-Zn-efd"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="leading" secondItem="GCl-7q-WX2" secondAttribute="leading" id="NcD-TA-ZI7"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="bottom" secondItem="GCl-7q-WX2" secondAttribute="bottom" id="eYw-ci-bCM"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="trailing" secondItem="GCl-7q-WX2" secondAttribute="trailing" id="vDx-0t-ekj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sdy-hV-Znq"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Gh7-dZ-WXF" id="FmT-Gb-8er"/>
+                        <outlet property="simulationView" destination="FXj-JA-R0U" id="5U9-J9-8nk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hAw-tR-wTy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1198.5507246376812" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b1A-Xn-OrH">
@@ -147,4 +204,9 @@
             <point key="canvasLocation" x="-552" y="83"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
