@@ -20,6 +20,11 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         createHumans()
         drawHumans()
         
@@ -60,7 +65,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     
     func createHumans() {
         for _ in 1...groupSize {
-            humans.append(Human(x: Int.random(in: 0...Int(simulationView.frame.width)), y: Int.random(in: 0...Int(simulationView.frame.height))))
+            humans.append(Human(x: Int.random(in: 0...Int(simulationView.frame.width) - 50), y: Int.random(in: 0...Int(simulationView.frame.height - 50))))
         }
     }
     
