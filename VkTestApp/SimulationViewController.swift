@@ -104,6 +104,16 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             simulationView.addSubview(square)
         }
         
+
+        if !infectedHumans.isEmpty {
+            for i in 0...infectedHumans.count - 1{
+                infectNearestHumans(infectedHuman: infectedHumans[i])
+                
+                if healthyHumans.isEmpty {
+                    break
+                }
+            }
+        }
         
     }
     
@@ -136,11 +146,25 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     
     func infectNearestHumans(infectedHuman: Human) {
         var lengths: [Double] = [Double]()
-        for i in 0...healthyHumans.count - 1 {
+        
+        for i in stride(from: 0, to: healthyHumans.count - 1, by: 1) {
             let length: Double = sqrt(Double((infectedHuman.x - healthyHumans[i].x) * (infectedHuman.x - healthyHumans[i].x) + (infectedHuman.y - healthyHumans[i].y) * (infectedHuman.y - healthyHumans[i].y)))
             lengths.append(length)
         }
+        
+
         for _ in 0...infectionFactor - 1{
+            
+            if lengths.isEmpty{
+                if !healthyHumans.isEmpty {
+                    infectedHumans.append(healthyHumans[0])
+                    healthyHumans.remove(at: 0)
+                    healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
+                    infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+                }
+                break
+            }
+            
             let minLengthIndex = lengths.firstIndex(of: lengths.min()!)
             
             infectedHumans.append(healthyHumans[minLengthIndex!])
