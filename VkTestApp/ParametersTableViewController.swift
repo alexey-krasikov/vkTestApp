@@ -14,6 +14,8 @@ class ParametersTableViewController: UITableViewController {
     @IBOutlet var recalculationPeriodTextField: UITextField!
     @IBOutlet var startSimulationButton: UIButton!
     
+    
+    
     var groupSize: Int = Int()
     var infectionFactor: Int = Int()
     var recalculationPeriod: Int = Int()

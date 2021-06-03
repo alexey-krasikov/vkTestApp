@@ -12,11 +12,17 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var simulationView: UIView!
     
+    @IBOutlet var healthyHumansLabel: UILabel!
+    @IBOutlet var infectedHumansLabel: UILabel!
+    
+    
     var groupSize: Int = Int()
     var infectionFactor: Int = Int()
     var recalculationPeriod: Int = Int()
     var humans: [Human] = [Human]()
-    //var activeHumanId: Int = Int()
+    var infectedHumans: [Human] = [Human]()
+    
+    var timerForUpdateUI: Timer?
 
     
     override func viewDidLoad() {
@@ -27,10 +33,15 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
-        
         createHumans()
-        drawHumans()
         
+        healthyHumansLabel.text = String(groupSize)
+        
+        self.updateUI()
+        timerForUpdateUI = Timer.scheduledTimer(withTimeInterval: Double(recalculationPeriod), repeats: true) { (timer) in
+            self.updateUI()
+        }
+        timerForUpdateUI?.tolerance = 0.1
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -72,11 +83,15 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func drawHumans() {
+    func updateUI() {
+        for subview in simulationView.subviews as [UIView]   {
+          subview.removeFromSuperview()
+        }
+        
         humans.forEach { (human) in
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
-            square.backgroundColor = .green
+            square.backgroundColor = human.infected ? .red : .green
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             simulationView.addSubview(square)
             square.addGestureRecognizer(gesture)
@@ -92,11 +107,29 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     
     func infectHumanByTap(x: Int, y: Int) {
         for i in 0...humans.count - 1 {
-            if humans[i].x == x && humans[i].y == y {
-                humans[i].infected = true
+            if humans[i].infected == false {
+                if humans[i].x == x && humans[i].y == y {
+                    humans[i].infected = true
+                    healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
+                    infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+                    infectNearestHuman(infectedHuman: humans[i])
+                }
             }
         }
     }
+    
+    func infectNearestHuman(infectedHuman: Human) {
+        var sortedHumans: [Human] = humans
+        var sortedLength: [Double] = [Double]()
+        for i in 0...humans.count - 1 {
+            print("infectedHuman: (\(infectedHuman.x),\(infectedHuman.y))")
+            print("New human: (\(humans[i].x),\(humans[i].y))")
+            let length: Double = sqrt(Double((infectedHuman.x - humans[i].x) * (infectedHuman.x - humans[i].x) + (infectedHuman.y - humans[i].y) * (infectedHuman.y - humans[i].y)))
+            print("Lenght: \(length)")
+            sortedLength.append(length)
+        }
+    }
+    
     
 
     /*

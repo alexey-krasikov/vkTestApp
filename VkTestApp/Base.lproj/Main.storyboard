@@ -240,6 +240,8 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Sdy-hV-Znq"/>
                     <connections>
+                        <outlet property="healthyHumansLabel" destination="bvF-KH-yRR" id="E8N-T4-pLs"/>
+                        <outlet property="infectedHumansLabel" destination="yaN-Bu-Ga9" id="X3N-rL-KPn"/>
                         <outlet property="scrollView" destination="Gh7-dZ-WXF" id="FmT-Gb-8er"/>
                         <outlet property="simulationView" destination="FXj-JA-R0U" id="5U9-J9-8nk"/>
                     </connections>
