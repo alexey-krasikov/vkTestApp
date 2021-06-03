@@ -105,6 +105,9 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         }
         
 
+        healthyHumansLabel.text = String(healthyHumans.count)
+        infectedHumansLabel.text = String(infectedHumans.count)
+        
         DispatchQueue.global(qos: .userInitiated).async {
             if !self.infectedHumans.isEmpty {
                 for i in 0...self.infectedHumans.count - 1{
@@ -164,10 +167,6 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
                     infectedHumans.append(healthyHumans[0])
                     healthyHumans.remove(at: 0)
                     
-                    DispatchQueue.main.async {
-                        self.healthyHumansLabel.text = String(Int(self.healthyHumansLabel.text!)! - 1)
-                        self.infectedHumansLabel.text = String(Int(self.infectedHumansLabel.text!)! + 1)
-                    }
 
                 }
                 break
@@ -178,10 +177,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             infectedHumans.append(healthyHumans[minLengthIndex!])
             healthyHumans.remove(at: minLengthIndex!)
             
-            DispatchQueue.main.async {
-                self.healthyHumansLabel.text = String(Int(self.healthyHumansLabel.text!)! - 1)
-                self.infectedHumansLabel.text = String(Int(self.infectedHumansLabel.text!)! + 1)
-            }
+
             lengths.remove(at: minLengthIndex!)
         }
         
