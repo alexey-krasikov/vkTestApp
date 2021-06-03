@@ -89,6 +89,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         }
         
         healthyHumans.forEach { (human) in
+            
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
             square.backgroundColor = .green
@@ -103,7 +104,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             square.backgroundColor = .red
             simulationView.addSubview(square)
         }
-        
+
 
         healthyHumansLabel.text = String(healthyHumans.count)
         infectedHumansLabel.text = String(infectedHumans.count)
@@ -119,10 +120,8 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        
-
-        
     }
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         self.infectHumanByTap(x: Int(floor((sender?.view?.frame.origin.x)!)), y: Int(floor((sender?.view?.frame.origin.y)!)))
@@ -132,7 +131,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     
     func infectHumanByTap(x: Int, y: Int) {
         
-        if healthyHumans.count == 1 {
+        if healthyHumans.count <= 1 {
             infectedHumans.append(healthyHumans.first!)
             healthyHumans.remove(at: 0)
             healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
@@ -166,8 +165,6 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
                 if !healthyHumans.isEmpty {
                     infectedHumans.append(healthyHumans[0])
                     healthyHumans.remove(at: 0)
-                    
-
                 }
                 break
             }
@@ -177,7 +174,6 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             infectedHumans.append(healthyHumans[minLengthIndex!])
             healthyHumans.remove(at: minLengthIndex!)
             
-
             lengths.remove(at: minLengthIndex!)
         }
         

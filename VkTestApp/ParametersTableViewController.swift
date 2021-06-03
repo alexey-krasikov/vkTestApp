@@ -51,11 +51,7 @@ class ParametersTableViewController: UITableViewController {
 
     
     
-    @IBSegueAction func simulationSegueAction(_ coder: NSCoder, sender: Any?) -> SimulationViewController? {
-        let groupSize = Int(groupSizeTextField.text!) ?? 0
-        let infectionFactor = Int(infectionFactorTextField.text!) ?? 0
-        let recalculationPeriod = Int(recalculationPeriodTextField.text!) ?? 0
-        
+    @IBSegueAction func simulationSegueAction(_ coder: NSCoder, sender: Any?) -> SimulationViewController? {        
         return SimulationViewController(coder: coder, groupSize: groupSize, infectionFactor: infectionFactor, recalculationPeriod: recalculationPeriod)
     }
     
