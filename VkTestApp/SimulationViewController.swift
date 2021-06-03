@@ -108,8 +108,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        
-        infectHumanByTap(x: Int(floor((sender?.view?.frame.origin.x)!)), y: Int(floor((sender?.view?.frame.origin.y)!)))
+        self.infectHumanByTap(x: Int(floor((sender?.view?.frame.origin.x)!)), y: Int(floor((sender?.view?.frame.origin.y)!)))
         sender?.view?.backgroundColor = .red
         
     }
@@ -128,21 +127,33 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
                     healthyHumans.remove(at: i)
                     healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
                     infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
-                    infectNearestHuman(infectedHuman: infectedHumans.last!)
+                    infectNearestHumans(infectedHuman: infectedHumans.last!)
                     break
                 }
             }
         }
     }
     
-    func infectNearestHuman(infectedHuman: Human) {
-        //var sortedHumans: [Human] = humans
+    func infectNearestHumans(infectedHuman: Human) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            //
+        }
         var lengths: [Double] = [Double]()
         for i in 0...healthyHumans.count - 1 {
             let length: Double = sqrt(Double((infectedHuman.x - healthyHumans[i].x) * (infectedHuman.x - healthyHumans[i].x) + (infectedHuman.y - healthyHumans[i].y) * (infectedHuman.y - healthyHumans[i].y)))
             lengths.append(length)
         }
-        print(lengths)
+        for _ in 0...infectionFactor - 1{
+            let minLengthIndex = lengths.firstIndex(of: lengths.min()!)
+            
+            infectedHumans.append(healthyHumans[minLengthIndex!])
+            infectNearestHumans(infectedHuman: infectedHumans.last!)
+            healthyHumans.remove(at: minLengthIndex!)
+            healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
+            infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+            lengths.remove(at: minLengthIndex!)
+        }
+        
     }
     
     
