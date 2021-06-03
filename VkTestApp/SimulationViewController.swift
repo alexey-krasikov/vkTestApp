@@ -135,9 +135,6 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func infectNearestHumans(infectedHuman: Human) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            //
-        }
         var lengths: [Double] = [Double]()
         for i in 0...healthyHumans.count - 1 {
             let length: Double = sqrt(Double((infectedHuman.x - healthyHumans[i].x) * (infectedHuman.x - healthyHumans[i].x) + (infectedHuman.y - healthyHumans[i].y) * (infectedHuman.y - healthyHumans[i].y)))
@@ -147,7 +144,6 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             let minLengthIndex = lengths.firstIndex(of: lengths.min()!)
             
             infectedHumans.append(healthyHumans[minLengthIndex!])
-            infectNearestHumans(infectedHuman: infectedHumans.last!)
             healthyHumans.remove(at: minLengthIndex!)
             healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
             infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
