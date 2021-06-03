@@ -156,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh7-dZ-WXF">
-                                <rect key="frame" x="20" y="96" width="374" height="708"/>
+                                <rect key="frame" x="0.0" y="96" width="414" height="706"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-JA-R0U">
                                         <rect key="frame" x="0.0" y="0.0" width="1420" height="2800"/>
@@ -230,12 +230,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Gh7-dZ-WXF" firstAttribute="top" secondItem="GCl-7q-WX2" secondAttribute="top" constant="8" id="MHQ-Zn-efd"/>
-                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="leading" secondItem="GCl-7q-WX2" secondAttribute="leading" constant="20" id="NcD-TA-ZI7"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="leading" secondItem="GCl-7q-WX2" secondAttribute="leading" id="NcD-TA-ZI7"/>
                             <constraint firstItem="KKR-Lh-Iwe" firstAttribute="trailing" secondItem="GCl-7q-WX2" secondAttribute="trailing" constant="-8" id="PqJ-ST-E93"/>
                             <constraint firstItem="GCl-7q-WX2" firstAttribute="bottom" secondItem="KKR-Lh-Iwe" secondAttribute="bottom" id="aEm-qy-a3B"/>
-                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="bottom" secondItem="GCl-7q-WX2" secondAttribute="bottom" constant="-58" id="eYw-ci-bCM"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="bottom" secondItem="GCl-7q-WX2" secondAttribute="bottom" constant="-60" id="eYw-ci-bCM"/>
                             <constraint firstItem="KKR-Lh-Iwe" firstAttribute="leading" secondItem="GCl-7q-WX2" secondAttribute="leading" constant="8" id="o2v-3U-3OR"/>
-                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="trailing" secondItem="GCl-7q-WX2" secondAttribute="trailing" constant="-20" id="vDx-0t-ekj"/>
+                            <constraint firstItem="Gh7-dZ-WXF" firstAttribute="trailing" secondItem="GCl-7q-WX2" secondAttribute="trailing" id="vDx-0t-ekj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Sdy-hV-Znq"/>

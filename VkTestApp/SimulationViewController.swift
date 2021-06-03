@@ -16,7 +16,9 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     var infectionFactor: Int = Int()
     var recalculationPeriod: Int = Int()
     var humans: [Human] = [Human]()
+    //var activeHumanId: Int = Int()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
@@ -24,6 +26,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         
         createHumans()
         drawHumans()
@@ -64,8 +67,8 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func createHumans() {
-        for _ in 1...groupSize {
-            humans.append(Human(x: Int.random(in: 0...Int(simulationView.frame.width) - 50), y: Int.random(in: 0...Int(simulationView.frame.height - 50))))
+        for i in 1...groupSize {
+            humans.append(Human(id: i-1, x: Int.random(in: 20...Int(simulationView.frame.width) - 70), y: Int.random(in: 0...Int(simulationView.frame.height - 50))))
         }
     }
     
@@ -74,8 +77,24 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
             square.backgroundColor = .green
-            
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             simulationView.addSubview(square)
+            square.addGestureRecognizer(gesture)
+        }
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        
+        infectHumanByTap(x: Int(floor((sender?.view?.frame.origin.x)!)), y: Int(floor((sender?.view?.frame.origin.y)!)))
+        sender?.view?.backgroundColor = .red
+        
+    }
+    
+    func infectHumanByTap(x: Int, y: Int) {
+        for i in 0...humans.count - 1 {
+            if humans[i].x == x && humans[i].y == y {
+                humans[i].infected = true
+            }
         }
     }
     
