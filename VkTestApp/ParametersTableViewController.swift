@@ -40,7 +40,7 @@ class ParametersTableViewController: UITableViewController {
         infectionFactor = Int(infectionFactorTextField.text!) ?? 0
         recalculationPeriod = Int(recalculationPeriodTextField.text!) ?? 0
         
-        if groupSize == 0 || infectionFactor == 0 || recalculationPeriod == 0 {
+        if groupSize <= 0 || infectionFactor <= 0 || recalculationPeriod <= 0 {
             startSimulationButton.isEnabled = false
         } else {
             startSimulationButton.isEnabled = true

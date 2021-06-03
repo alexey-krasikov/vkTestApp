@@ -19,7 +19,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     var groupSize: Int = Int()
     var infectionFactor: Int = Int()
     var recalculationPeriod: Int = Int()
-    var humans: [Human] = [Human]()
+    var healthyHumans: [Human] = [Human]()
     var infectedHumans: [Human] = [Human]()
     
     var timerForUpdateUI: Timer?
@@ -33,7 +33,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
-        createHumans()
+        createHealthyHumans()
         
         healthyHumansLabel.text = String(groupSize)
         
@@ -77,9 +77,9 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func createHumans() {
-        for i in 1...groupSize {
-            humans.append(Human(id: i-1, x: Int.random(in: 20...Int(simulationView.frame.width) - 70), y: Int.random(in: 0...Int(simulationView.frame.height - 50))))
+    func createHealthyHumans() {
+        for _ in 1...groupSize {
+            healthyHumans.append(Human(x: Int.random(in: 20...Int(simulationView.frame.width) - 70), y: Int.random(in: 0...Int(simulationView.frame.height - 50))))
         }
     }
     
@@ -88,14 +88,23 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
           subview.removeFromSuperview()
         }
         
-        humans.forEach { (human) in
+        healthyHumans.forEach { (human) in
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
-            square.backgroundColor = human.infected ? .red : .green
+            square.backgroundColor = .green
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             simulationView.addSubview(square)
             square.addGestureRecognizer(gesture)
         }
+        
+        infectedHumans.forEach { (human) in
+            let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
+            let square = UIView(frame: smallFrame)
+            square.backgroundColor = .red
+            simulationView.addSubview(square)
+        }
+        
+        
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -106,28 +115,34 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func infectHumanByTap(x: Int, y: Int) {
-        for i in 0...humans.count - 1 {
-            if humans[i].infected == false {
-                if humans[i].x == x && humans[i].y == y {
-                    humans[i].infected = true
+        
+        if healthyHumans.count == 1 {
+            infectedHumans.append(healthyHumans.first!)
+            healthyHumans.remove(at: 0)
+            healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
+            infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+        } else {
+            for i in 0...healthyHumans.count - 1 {
+                if healthyHumans[i].x == x && healthyHumans[i].y == y {
+                    infectedHumans.append(healthyHumans[i])
+                    healthyHumans.remove(at: i)
                     healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
                     infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
-                    infectNearestHuman(infectedHuman: humans[i])
+                    infectNearestHuman(infectedHuman: infectedHumans.last!)
+                    break
                 }
             }
         }
     }
     
     func infectNearestHuman(infectedHuman: Human) {
-        var sortedHumans: [Human] = humans
-        var sortedLength: [Double] = [Double]()
-        for i in 0...humans.count - 1 {
-            print("infectedHuman: (\(infectedHuman.x),\(infectedHuman.y))")
-            print("New human: (\(humans[i].x),\(humans[i].y))")
-            let length: Double = sqrt(Double((infectedHuman.x - humans[i].x) * (infectedHuman.x - humans[i].x) + (infectedHuman.y - humans[i].y) * (infectedHuman.y - humans[i].y)))
-            print("Lenght: \(length)")
-            sortedLength.append(length)
+        //var sortedHumans: [Human] = humans
+        var lengths: [Double] = [Double]()
+        for i in 0...healthyHumans.count - 1 {
+            let length: Double = sqrt(Double((infectedHuman.x - healthyHumans[i].x) * (infectedHuman.x - healthyHumans[i].x) + (infectedHuman.y - healthyHumans[i].y) * (infectedHuman.y - healthyHumans[i].y)))
+            lengths.append(length)
         }
+        print(lengths)
     }
     
     

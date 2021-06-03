@@ -8,8 +8,7 @@
 import Foundation
 
 struct Human {
-    let id: Int
-    var infected: Bool = false
+   // var infected: Bool = false
     let x: Int
     let y: Int
 }
