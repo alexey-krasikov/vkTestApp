@@ -105,15 +105,19 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         }
         
 
-        if !infectedHumans.isEmpty {
-            for i in 0...infectedHumans.count - 1{
-                infectNearestHumans(infectedHuman: infectedHumans[i])
-                
-                if healthyHumans.isEmpty {
-                    break
+        DispatchQueue.global(qos: .userInitiated).async {
+            if !self.infectedHumans.isEmpty {
+                for i in 0...self.infectedHumans.count - 1{
+                    self.infectNearestHumans(infectedHuman: self.infectedHumans[i])
+                    
+                    if self.healthyHumans.isEmpty {
+                        break
+                    }
                 }
             }
         }
+        
+
         
     }
     
@@ -159,8 +163,12 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
                 if !healthyHumans.isEmpty {
                     infectedHumans.append(healthyHumans[0])
                     healthyHumans.remove(at: 0)
-                    healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
-                    infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+                    
+                    DispatchQueue.main.async {
+                        self.healthyHumansLabel.text = String(Int(self.healthyHumansLabel.text!)! - 1)
+                        self.infectedHumansLabel.text = String(Int(self.infectedHumansLabel.text!)! + 1)
+                    }
+
                 }
                 break
             }
@@ -169,23 +177,16 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             
             infectedHumans.append(healthyHumans[minLengthIndex!])
             healthyHumans.remove(at: minLengthIndex!)
-            healthyHumansLabel.text = String(Int(healthyHumansLabel.text!)! - 1)
-            infectedHumansLabel.text = String(Int(infectedHumansLabel.text!)! + 1)
+            
+            DispatchQueue.main.async {
+                self.healthyHumansLabel.text = String(Int(self.healthyHumansLabel.text!)! - 1)
+                self.infectedHumansLabel.text = String(Int(self.infectedHumansLabel.text!)! + 1)
+            }
             lengths.remove(at: minLengthIndex!)
         }
         
     }
     
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
