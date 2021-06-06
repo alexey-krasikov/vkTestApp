@@ -56,6 +56,8 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         scrollView.zoomScale = scale
     }
     
+    
+    //Анимация повления экрана симуляции
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 1.0, delay: 0.0,
            usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7,
@@ -84,10 +86,13 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func updateUI() {
+        
+        //Удаление всех объектов с вьюшки
         for subview in simulationView.subviews as [UIView]   {
           subview.removeFromSuperview()
         }
         
+        //Заполнение здоровыми людьдми
         healthyHumans.forEach { (human) in
             
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
@@ -98,6 +103,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             square.addGestureRecognizer(gesture)
         }
         
+        //Заполнение инфекционными людьми
         infectedHumans.forEach { (human) in
             let smallFrame = CGRect(x: human.x, y: human.y, width: 50, height: 50)
             let square = UIView(frame: smallFrame)
@@ -105,10 +111,11 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
             simulationView.addSubview(square)
         }
 
-
+        //Обновление UI элементов
         healthyHumansLabel.text = String(healthyHumans.count)
         infectedHumansLabel.text = String(infectedHumans.count)
         
+        //Пересчёт заболевших
         DispatchQueue.global(qos: .userInitiated).async {
             if !self.infectedHumans.isEmpty {
                 for i in 0...self.infectedHumans.count - 1{
@@ -129,6 +136,7 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    //Ручное заражения тапом по точке на экране
     func infectHumanByTap(x: Int, y: Int) {
         
         if healthyHumans.count <= 1 {
@@ -150,6 +158,8 @@ class SimulationViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    
+    //Автоматическое заражения ближайших людей
     func infectNearestHumans(infectedHuman: Human) {
         var lengths: [Double] = [Double]()
         

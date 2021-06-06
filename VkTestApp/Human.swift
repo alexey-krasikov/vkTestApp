@@ -8,7 +8,6 @@
 import Foundation
 
 struct Human {
-   // var infected: Bool = false
     let x: Int
     let y: Int
 }
